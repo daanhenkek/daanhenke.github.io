@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>triangleTest</title>
+</head>
+<body onload="draw();">
+
+<canvas id="canvas" width="1920" height="1080"></canvas>
+
+
+<script>
+    function drawTriangle(ctx, colour, canv, points) {
+        ctx.beginPath();
+        ctx.fillStyle = colour;
+        ctx.moveTo(getRandomInt(0, canv.width), getRandomInt(0, canv.height));
+        for (var i = 1; i < points; i++)
+        {
+            ctx.lineTo(getRandomInt(0, canv.width), getRandomInt(0, canv.height));
+        }
+
+        ctx.fill();
+    }
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function draw() {
+        var canv = document.getElementById("canvas");
+        var context = canv.getContext("2d");
+
+        //var colors = ["#FF0000", "#FF0033", "#000000", "#FF0011", "F000000"]
+        //var colors = ["#4d4234", "#99918a", "#a8adaf", "#dbbab3", "#c28088"];
+        //var colors = ["#e0e2e4", "#c6bcb6", "#96897f", "#625750"];
+        var colors = ["#4d4234", "#99918a", "#a8adaf", "#dbbab3", "#c28088", "#e0e2e4", "#c6bcb6", "#96897f", "#625750"]
+
+        var amount = 40;
+
+        for (var i = 0; i < amount; i++)
+        {
+            setTimeout(function() {
+                drawTriangle(context, colors[getRandomInt(0, colors.length-1)], canv, 3)
+            }, 5 * i);
+        }
+    }
+</script>
+</body>
+</html>
